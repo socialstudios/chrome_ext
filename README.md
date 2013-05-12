@@ -1,2 +1,2 @@
-chrome_ext
+Yourshow Chrome extension
 ==========
