@@ -34,7 +34,7 @@ function saveLatestShowTs(showTs) {
     return;
   }
   // Save show timestamp using the Chrome extension storage API.
-  storage.set({"latest_show_ts": showTs}, function() {
+  storage.set({LATEST_SHOW_TS_KEY: showTs}, function() {
     console.log('Watching yourshow, Latest show timestamp is saved - ' + showTs);
   });
 }
