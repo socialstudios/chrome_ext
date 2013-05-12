@@ -10,7 +10,7 @@
   well-known actress and Hollywood producer.
 */
 
-var CREATED_NEW_SHOW_INTERVAL = 6; //create new show every x hours
+var CREATED_NEW_SHOW_INTERVAL_HOURS = 6; //create new show every x hours
 var storage = chrome.storage.local;
 
 chrome.browserAction.onClicked.addListener(function() {
@@ -48,11 +48,11 @@ function checkLatestShowTimestamp(){
     if (data["latest_show_ts"]){
       var d = getCurrentTs();
       var diff = d - data["latest_show_ts"];
-      var showsHoursDiff = 3600 * CREATED_NEW_SHOW_INTERVAL;
+      var showsHoursDiff = 3600 * CREATED_NEW_SHOW_INTERVAL_HOURS;
       if (diff > showsHoursDiff){
         chrome.browserAction.setBadgeText({"text":"1"});
       }else{
-        console.log("time left till next notification: " + (showsHoursDiff-diff) + " seconds");
+        console.log("time left till next notification: " + displayTime(showsHoursDiff-diff));
       }
     }else{
       console.log("no data");
@@ -65,6 +65,17 @@ function getCurrentTs(){
   //return unix time stamp in seconds.
   ts = new Date().getTime(); 
   return parseInt(ts/ 1000);
+}
+
+function displayTime(sec){
+  if (sec <= 60){
+    return sec + " Seconds";
+  }
+  var min = parseInt(sec/60);
+  if (min <= 60){
+    return min + " Minutes";
+  }
+  return parseInt((min/60)) + " Hours";
 }
 
 checkLatestShowTimestamp();
