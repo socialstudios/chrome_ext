@@ -59,6 +59,8 @@ function checkLatestShowTimestamp(){
       chrome.browserAction.setBadgeText({"text":"1"});
     }
   });
+
+  setTimeout(checkLatestShowTimestamp, 300000);
 }
 
 function getCurrentTs(){
