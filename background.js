@@ -55,11 +55,11 @@ function checkLatestShowTimestamp(){
         console.log("time left till next notification: " + displayTime(showsHoursDiff-diff));
       }
     }else{
-      console.log("no data");
+      console.log("no data in localstorage");
       chrome.browserAction.setBadgeText({"text":"1"});
     }
   });
-
+  //check again in 15 min
   setTimeout(checkLatestShowTimestamp, 300000);
 }
 
